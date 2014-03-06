@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<META name="author" content="William Stam">
+	<META name="date" content="2014/03/06 9:22 AM">
+</head>
+<body>
+
+
+<script type="text/javascript">
+	var data = "OBJECTID 2495 PROVINCE Limpopo CAT_B LIM341	WARDNO 2 WARD_ID 93401002 AREA 6277.34878495 WARDWINNER AFRICAN NATIONAL CONGRESS REG_VOTERS 4280 EA_NUMBER Electoral Wards for DC34";
+
+
+	//var data = "Name: John Berkins Address: LA, USA";
+	//var rname = data.match(/(?:Name:)(.+)(?:Address:)/)[1];
+	var test = data.match(/(?=WARD_ID)(.+)\sAREA/)[1];
+
+	test = test.replace("WARD_ID","")
+	test = test.replace("AREA","")
+	test = test.replace(" ","")
+	
+	
+	console.log(test);
+	
+	
+	
+</script>
+</body>
+</html>

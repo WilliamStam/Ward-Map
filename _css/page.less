@@ -1,0 +1,134 @@
+@import "libs/bootstrap/mixins.less";
+@import "libs/bootstrap/variables.less";
+@import "libs/bootstrap/_variables.less";
+
+body {
+	padding: 0;
+
+}
+
+
+
+html#page_html_tag {
+	overflow-y : scroll;
+}
+#page-header {
+	position:relative;
+}
+#page-content {
+	margin-top: 0;
+}
+
+
+#page-footer {
+	#gradient > .vertical(@navbarBackground,@navbarBackgroundHighlight);
+	border-top : 1px solid @navbarBorder;
+	.border-radius(@baseBorderRadius);
+	.box-shadow(0 -1px 4px rgba(0,0,0,.065)); // Prevent floats from breaking the navbar
+	.clearfix();
+}
+
+.nav {
+	.ns1 {
+		padding-right : 1px !important;
+		border-right  : none !important;
+		display       : inline-block;
+		margin-right: -2px !important;
+	}
+	.ns2 {
+		padding-left : 1px !important;
+		border-left  : none !important;
+		display      : inline-block;
+		margin-left: -2px!important;
+	}
+}
+#masterhead {
+	margin-top:41px;
+}
+
+.navbar .social-bar {
+	display : none;
+}
+@media (max-width: @navbarCollapseWidth) {
+	#masterhead {
+		margin-top:0;
+	}
+
+	.navbar-fixed-top, .navbar-fixed-bottom, .navbar-static-top {
+		margin-left:0;
+		margin-right:0;
+		.navbar-inner {
+			padding-top : 0 !important;
+			padding-bottom : 0 !important;
+		}
+
+	}
+
+	.nav-collapse.in.collapse {
+		.nav {
+			border: 1px solid #ccc;
+			margin-bottom : 0;
+			&.pull-right {
+				float : left;
+			}
+			li {
+				display : inline-block;
+				width : 49%;
+				position: relative;
+
+					a {
+						float           : none; // Vertically center the text given @navbarHeight
+						padding         : ((@navbarHeight - @baseLineHeight) / 2) 15px ((@navbarHeight - @baseLineHeight) / 2);
+						color           : @navbarLinkColor;
+						text-decoration : none;
+						text-shadow     : 0 1px 0 @navbarBackgroundHighlight;
+
+					}
+				ul {
+					margin: 0;
+					border : 1px solid #ccc;
+					color: #444;
+					background-color        : @dropdownBackground;
+					border                  : 1px solid #ccc; // Fallback for IE7-8
+					border                  : 1px solid @dropdownBorder;
+					*border-right-width     : 2px;
+					*border-bottom-width    : 2px;
+					.border-radius(6px);
+					.box-shadow(0 5px 10px rgba(0,0,0,.2));
+					-webkit-background-clip : padding-box;
+					-moz-background-clip    : padding;
+					background-clip         : padding-box;
+
+					li {
+						display: block;
+						widows : 100%;
+					}
+				}
+				&.divider-vertical {
+					display: none;
+				}
+			}
+		}
+	}
+    body {
+	   overflow-x: hidden;
+	    padding-top: 41px;
+    }
+    .navbar .social-bar {
+	    display: block;
+
+    }
+
+
+    #page-content {
+	    padding-left: 10px;
+	    padding-right: 10px;
+    }
+}
+
+#main-menu-right  li i.icon-and-text {
+	margin-right: 5px;
+}
+body.cke_editable {
+	padding: 8px;
+}

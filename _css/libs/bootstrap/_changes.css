@@ -1,0 +1,5 @@
+NameError: .opacity is undefined in D:\Web\LiN\ui\_css\libs\bootstrap\_changes.less:11:1
+10 .modal-backdrop.fade.in {
+11 	.opacity(60);
+12 }
+

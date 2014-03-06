@@ -1,0 +1,143 @@
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.c {
+  text-align: center !important;
+}
+.l {
+  text-align: left !important;
+}
+.r {
+  text-align: right !important;
+}
+.s {
+  font-size: 10px !important;
+}
+.g {
+  color: #bfbfbf !important;
+}
+.dg {
+  color: #8c8c8c !important;
+}
+.f8 {
+  font-size: 8px !important;
+}
+.f9 {
+  font-size: 9px !important;
+}
+.f10 {
+  font-size: 10px !important;
+}
+.f11 {
+  font-size: 11px !important;
+}
+.f12 {
+  font-size: 12px !important;
+}
+.f13 {
+  font-size: 13px !important;
+}
+.glow {
+  -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+}
+.marker {
+  background-color: Yellow;
+}
+#systemTimers .heading {
+  background-color: #f1f1f1;
+  font-weight: bold;
+}
+#systemTimers td {
+  border-bottom: 1px dotted #ccc;
+  font-size: 10px;
+  padding: 3px;
+}
+#systemTimers td .small {
+  font-size: 8px;
+  color: #999;
+}
+.btn-row-details {
+  cursor: pointer;
+}
+.btn-row-details:hover {
+  background-color: #DEEBFF;
+}
+.row-details {
+  padding: 0;
+  display: none;
+}
+.error-404 {
+  padding-top: 30px;
+}
+.error-404 h1 {
+  font-size: 90px;
+  text-shadow: 0 0 10px #999;
+  color: #fff;
+  text-align: center;
+}
+span.highlight {
+  font-weight: bold;
+  color: green;
+}
+.navbar.btn-bar {
+  color: #999;
+  padding: 0;
+  margin-bottom: 0;
+}
+.navbar.btn-bar input,
+.navbar.btn-bar .btn {
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+.navbar.btn-bar .btn-label {
+  padding-top: 10px;
+  padding-bottom: 0;
+  font-weight: bold;
+  text-shadow: 0 0 3px #fff;
+}
+.navbar.btn-bar li {
+  line-height: 14px;
+}
+.navbar.btn-bar .navbar-inner {
+  -webkit-border-top-right-radius: 0;
+  -moz-border-radius-topright: 0;
+  border-top-right-radius: 0;
+  -webkit-border-top-left-radius: 0;
+  -moz-border-radius-topleft: 0;
+  border-top-left-radius: 0;
+  min-height: 30px;
+  padding-right: 4px;
+}
+.navbar.btn-bar .navbar-inner .divider-vertical {
+  height: 30px;
+}
+.navbar.btn-bar .btn-icon a {
+  padding-top: 4px;
+  padding-bottom: 3px;
+}
