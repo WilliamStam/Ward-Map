@@ -1,0 +1,161 @@
+<!doctype html>
+<!--[if lt IE 9]>
+<html class="no-js oldie" lang="en"> <![endif]-->
+<!--[if IE 9]>
+<html class="no-js ie ie9" lang="en"> <![endif]-->
+<!--[if gt IE 9]>
+<html class="no-js ie" lang="en">
+<![endif]-->
+<!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<title>{{ page['meta']['title']|default("") }}</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="/ui/_css/style.{{ _v }}.css"/>
+
+
+	<script src="/ui/_js/libs/modernizr.{{ _v }}.js"></script>
+
+
+	{% for row in page['css'] %}
+		<link rel="stylesheet" href="{{ row }}">
+	{% endfor %}
+
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+
+
+
+</head>
+<body>
+<section id="content-area">
+	{% if page['template'] %} {% include page['template'] %} {% endif %}
+</section>
+
+
+	<a href="#systemTimers-container" data-toggle="modal" id="systemTimers-btn" ><i class="icon-time icon-d-grey"></i></a>
+
+
+
+<div id='systemTimers-container' class='modal hide fade'>
+	<div class='modal-header'><a href='#' class='close' data-dismiss="modal">&times;</a>
+
+		<h3>Debug</h3></div>
+	<div class='modal-body'>
+		<article>
+			<table id='systemTimers' class="table">
+
+			</table>
+		</article>
+	</div>
+	<div class='modal-footer'>
+
+	</div>
+</div>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=visualization,places&sensor=false"></script>
+<script src="/ui/_js/libs/jquery.{{ _v }}.js"></script>
+<script src="/ui/_js/libs/bootstrap.{{ _v }}.js"></script>
+<script src="/min/js.{{ _v }}.js"></script>
+
+
+<script type="text/javascript">
+	var highlightfrom = 0.5;
+	
+
+
+
+</script>
+{% for row in page['js'] %}
+	<script src='{{ row }}'></script>
+{% endfor %}
+
+<script type="text/x-jqote-template" id="template-timers-tr">
+	<![CDATA[
+
+	<* if(this.msg!="Page Execute: "){ *>
+	<tr>
+		<td><*= this.msg *>
+			<div class="s g"><*= this.arg *></div>
+		</td>
+		<* if (this.tim > 0.5) { *>
+		<td style="color: red;"><*= this.tim *></td>
+		<* } else { *>
+		<td><*= this.tim *></td>
+		<* } *>
+
+	</tr>
+	<* } *>
+
+	]]>
+</script>
+<script type="text/x-jqote-template" id="template-timers-tr-models">
+	<![CDATA[
+
+	<tr style="background-color:#f1f1f1; ">
+		<td><*= this.k *></td>
+		<td style="width: 140px; <* if ( this.t > 0.5 ) { *>color: red;<* } *>"><*= this.t *></td>
+	</tr>
+	<* for(var i in this.m) { *>
+	<tr class="btn-row-details">
+		<td class="s g"
+		<* if (this.m[i].c > 1) { *>style="color: red;"<* } *>> <*= this.m[i].c *>&nbsp;|&nbsp;<*= this.m[i].l *>        </td>
+		<td class="s g"
+		<* if (this.m[i].t > 0.5) { *>style="color: red;"<* } *>> <*= this.m[i].t *>        </td>
+	</tr>
+
+	<tr class="row-details">
+		<td colspan="2">
+			<table class='s g' style='width:100%'>
+
+				<tbody>
+				<* for(var g in this.m[i].m) { *>
+				<tr>
+					<td style="padding-left:30px;">
+
+						<div style="margin-left: -20px;" class="dg">
+							<*= this.m[i].m[g].arg.file *> : <*= this.m[i].m[g].arg.line *><br>
+							<em style="margin-left: 10px;"><*= this.m[i].m[g].arg.class *>-><*= this.m[i].m[g].arg.function *>(<*= this.m[i].m[g].arg.args *>)</em>
+
+						</div>
+						<* if (this.m[i].m[g].bt) { *>
+						<div style="margin-left: -20px;" class="">
+							<*= this.m[i].m[g].bt.file *> : <*= this.m[i].m[g].bt.line *><br>
+							<em style="margin-left: 10px;"><*= this.m[i].m[g].bt.class *>-><*= this.m[i].m[g].bt.function *>(<*= this.m[i].m[g].bt.args *>)</em>
+
+						</div>
+						<* } *>
+
+
+					</td>
+					<td style="width: 140px; <* if ( this.m[i].m[g].tim > 0.5 ) { *>color: red;<* } *>"><*= this.m[i].m[g].tim *></td>
+				</tr>
+				<* } *>
+				</tbody>
+			</table>
+
+		</td>
+	</tr>
+	<* } *> ]]>
+</script>
+
+{% if page['template_tmpl'] %}
+	{% include page['template_tmpl'] %}
+{% endif %}
+
+
+
+
+{% include 'templates/template.jtmpl' ignore missing %}
+
+{% include 'analytics.tmpl' ignore missing%}
+<!--timer_list-->
+</body>
+</html>

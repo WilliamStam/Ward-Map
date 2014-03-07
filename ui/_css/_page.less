@@ -1,0 +1,44 @@
+@import "libs/bootstrap/mixins.less";
+@import "libs/bootstrap/variables.less";
+@import "libs/bootstrap/_variables.less";
+
+body {
+	padding: 0;
+	overflow: hidden;
+
+}
+
+
+
+#content-area {
+	position:absolute;
+	top : 0;
+	bottom : 0;
+	left : 0;
+	right : 0;
+
+}
+#systemTimers-btn {
+	position:absolute;
+	bottom : 0;
+	left : 0;
+	padding:5px;
+	z-index: 100000;
+}
+
+.loading {
+	background : rgba(250, 250, 250, 0.7) url(/ui/_images/loading-wide.gif) no-repeat center center;
+	position   : absolute;
+	top        : 0;
+	bottom     : 0;
+	left       : 0;
+	right      : 0;
+	display    : block;
+	z-index    : 590;
+	&.small {
+		background : rgba(250, 250, 250, 0.7) url(/ui/_images/loading-small.gif) no-repeat center center;
+	}
+	&.wide {
+		background : rgba(250, 250, 250, 0.7) url(/ui/_images/loading-wide.gif) no-repeat center center;
+	}
+}

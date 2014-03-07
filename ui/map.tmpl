@@ -1,0 +1,60 @@
+<div style="text-align:center;">
+	<input type="text" id="searchbox" name="searchbox" class="span5 " style="z-index: 0; width: 400px; padding:10px;" placeholder="Input your address here to find your ward">
+</div>
+
+<article id="map-canvas"></article>
+
+
+<article id="page-area">
+	<ul class="nav nav-pills" id="nav-top">
+		<li class="active"><a href="#ward-candidates" data-toggle="tab">Candidates</a></li>
+		<li><a href="#ward-results" data-toggle="tab">2009 Results</a></li>
+		<li>
+			<a href="#" class="close-pages" style="padding:14px; border:1px solid #ccc; margin-left:10px; font-size:30px; color: #999;">&times;</a>
+		</li>
+	</ul>
+	<div class="tab-content">
+		<section id="ward-candidates" class="page-area tab-pane active">
+
+			<div id="flyaround">
+
+				<div id="details-pane"></div>
+
+
+				<ul id="rollerCoaster" class="roundabout-holder"></ul>
+				
+				
+				<div id="right-thumbs">
+<ul></ul>
+				</div>
+			</div>
+
+
+			<footer>
+				<button class="btn btn-primary nextprev-btn prev">Previous</button>
+				<button class="btn btn-primary nextprev-btn next">Next</button>
+				<div class="s g" style="margin-top: -5px;">In alphabetical Order</div>
+				<h1>Candidates <span class="data-candidate-count"></span><br>
+					<small class="data-ward-name"></small>
+				</h1>
+
+			</footer>
+		</section>
+		<section id="ward-results" class="page-area tab-pane">
+			<h2 style="margin-top: 50px; margin-left: 50px;">Will this year be any different?</h2>
+
+			<div id="ward-results-area" style="margin: 50px; "></div>
+
+			<footer>
+				<h1>2009 General elections result<br>
+					<small class="data-ward-name"></small>
+				</h1>
+
+			</footer>
+
+
+		</section>
+	</div>
+	<div class="loading wide" id="page-area-loading" ></div>
+</article>
+

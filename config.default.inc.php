@@ -14,3 +14,4 @@ $cfg['git'] = array(
 	"branch"=>"master"
 );
 
+$cfg['upload']['folder'] = $_SERVER['DOCUMENT_ROOT'] .  "/uploads/";

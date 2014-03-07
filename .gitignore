@@ -4,7 +4,7 @@ _crap/*
 cache/*
 media/*
 tmp/*
-uploads/ab/*
+uploads/*
 backups/*
 
 # Compiled source #

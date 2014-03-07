@@ -1,0 +1,101 @@
+
+<script type="text/x-jqote-template" id="template-thumbs-item">
+	<![CDATA[
+	<% for (var i in this.councillors) { %>
+	<li data-id="<%= this.councillors[i].ID %>" data-i="<%= i %>">
+		<img src="/thumb/councillor/<%= this.councillors[i].ID %>/100/100/<%= this.councillors[i].img %>" class="glow"><br>
+	</li>
+	<% } %>
+	]]>
+</script>
+<script type="text/x-jqote-template" id="template-roundabout-item">
+	<![CDATA[
+	<% for (var i in this.councillors) { %>
+	<li data-id="<%= this.councillors[i].ID %>">
+		<img src="/thumb/councillor/<%= this.councillors[i].ID %>/400/400/<%= this.councillors[i].img %>" class="glow"><br>
+
+		<h2>
+			<%= this.councillors[i].name %><br>
+			<small><%= this.councillors[i].party %></small>
+
+		</h2>
+	</li>
+	<% } %>
+
+
+
+
+
+
+	]]>
+</script>
+
+<script type="text/x-jqote-template" id="template-roundabout-item-details">
+	<![CDATA[
+	<h3><%= this.name %></h3>
+
+
+
+
+
+	]]>
+</script>
+<script type="text/x-jqote-template" id="template-results">
+	<![CDATA[
+	<table class="table" style="border-bottom: 1px solid #CCCCCC">
+		<tr>
+			<td style="vertical-align: top; border-right: 1px solid #ccc;">
+				<table class="table table-hover">
+					<thead>
+					<tr>
+						<th></th>
+						<th>Value</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<td>Registered Voters</td>
+						<td><%= this.registered %></td>
+					</tr>
+					<tr>
+						<td>Total Votes</td>
+						<td><%= this.votes %></td>
+					</tr>
+					<tr>
+						<td>Percentage Turnout</td>
+						<td><%= Math.round(((this.votes/this.registered)*100) * 100) / 100 %>%</td>
+					</tr>
+					</tbody>
+				</table>
+			</td>
+			<td style="vertical-align: top">
+				<table class="table table-hover">
+					<thead>
+					<tr>
+						<th>Party</th>
+						<th>Votes</th>
+					</tr>
+					</thead>
+					<tbody>
+					<% for (var i in this.results) { %>
+					<tr>
+						<td><%= this.results[i].party %>
+							<div style="width: <%= Math.round(((this.results[i].votes / this.votes)*100) * 100) / 100 %>%" class="votegraph"></div>
+						</td>
+						<td><%= this.results[i].votes %></td>
+					</tr>
+					<% } %>
+
+
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</table>
+
+
+
+
+
+	]]>
+</script>

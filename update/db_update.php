@@ -9,7 +9,11 @@
  * CREATE TABLE IF NOT EXISTS `system` (`ID` int(6) NOT NULL AUTO_INCREMENT,`system` varchar(100) DEFAULT NULL,`value` varchar(100) DEFAULT NULL, PRIMARY KEY (`ID`));
  */
 $i = 1;
-$sql = array();
+$sql = array(
+	$i++ => array(
+		"ALTER TABLE `wd_councillors` ADD `folder` VARCHAR( 250 ) NULL DEFAULT NULL AFTER `name`;"
+	),
+);
 
 	
 
