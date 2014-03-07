@@ -15,3 +15,6 @@ $cfg['git'] = array(
 );
 
 $cfg['upload']['folder'] = $_SERVER['DOCUMENT_ROOT'] .  "/uploads/";
+
+$cfg['default_title'] = "DC34 - Wards";
+$cfg['default_title_prefix'] = "DC34 - ";

@@ -1,4 +1,5 @@
 
+
 var markers = [];
 function getWard() {
 
@@ -20,12 +21,16 @@ function getWard() {
 			$("#right-thumbs ul").jqotesub($("#template-thumbs-item"), data_ward);
 			$("#page-area-loading").hide();
 
+
+			document.title = default_title_prefix+data_ward.desc;
 			
 			roundable();
 			//getCouncilor();
 			$(".data-ward-name").html(data_ward.desc)
 			$(".data-candidate-count").html("(" + data_ward.councillors.length + ")")
 		},"ward");
+	} else {
+		document.title = default_title;
 	}
 	
 
@@ -115,6 +120,7 @@ $(document).ready(function () {
 	$(document).on("click", ".close-pages", function () {
 		$.bbq.removeState("sub");
 		$.bbq.removeState("ward");
+		document.title = default_title;
 		$("#page-area").fadeOut(500);
 
 	});

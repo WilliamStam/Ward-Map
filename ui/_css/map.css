@@ -197,7 +197,7 @@ footer {
 }
 #right-thumbs ul li {
   cursor: pointer;
-  border-bottom: 1px dotted #ccc;
+  margin: 0px;
   float: left;
   padding: 10px;
 }

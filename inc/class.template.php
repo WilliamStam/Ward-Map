@@ -39,7 +39,7 @@ class template {
 	public function load() {
 
 		$curPageFull = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-		$cfg = $this->f3->get('CFG');
+		$cfg = $this->f3->get('cfg');
 		unset($cfg['DB']);
 		unset($cfg['package']);
 
@@ -49,12 +49,6 @@ class template {
 
 		$this->vars['_nav_top'] ="_nav_top.tmpl";
 		$this->vars['_v'] = $v;
-
-
-		
-		$cfg = $this->f3->get('CFG');
-		unset($cfg['DB']);
-		unset($cfg['package']);
 
 
 		//$this->vars['_nav_top'] = $this->vars['folder'] . "_nav_top.tmpl";
@@ -71,7 +65,7 @@ class template {
 		
 
 
-		//test_array($this->vars);
+	//	test_array($this->vars);
 		
 
 
