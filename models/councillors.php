@@ -23,8 +23,8 @@ class councillors extends _ {
 
 		$timer = new timer();
 		$result = $this->f3->get("DB")->exec("
-			SELECT wd_councillors.*, wd_parties.name as party
-			FROM wd_councillors LEFT JOIN wd_parties ON wd_councillors.party_ID = wd_parties.ID
+			SELECT wd_councillors.*
+			FROM wd_councillors
 			WHERE $where;
 		");
 
@@ -60,9 +60,8 @@ class councillors extends _ {
 
 
 		$result = $f3->get("DB")->exec("
-			SELECT DISTINCT wd_councillors.*, wd_parties.name as party
-
-			FROM wd_councillors LEFT JOIN wd_parties ON wd_councillors.party_ID = wd_parties.ID
+			SELECT wd_councillors.*
+			FROM wd_councillors
 			$where
 			$orderby
 			$limit;

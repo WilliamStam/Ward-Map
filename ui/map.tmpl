@@ -6,56 +6,67 @@
 
 
 <article id="page-area">
-	<ul class="nav nav-pills" id="nav-top">
-		<li class="active"><a href="#ward-candidates" data-toggle="tab">Candidates</a></li>
-		<li><a href="#ward-results" data-toggle="tab">2009 Results</a></li>
-		<li>
-			<a href="#" class="close-pages" style="padding:14px; border:1px solid #ccc; margin-left:10px; font-size:30px; color: #999;">&times;</a>
-		</li>
-	</ul>
-	<div class="tab-content">
-		<section id="ward-candidates" class="page-area tab-pane active">
-
-			<div id="flyaround">
-
-				<div id="details-pane"></div>
+	<div id="page-area-content">
 
 
-				<ul id="rollerCoaster" class="roundabout-holder"></ul>
-				
-				
-				<div id="right-thumbs">
-<ul></ul>
+		<ul class="nav nav-pills" id="nav-top">
+
+			<li class="active"><a href="#ward-candidates" data-toggle="tab">Candidates</a></li>
+			<li><a href="#ward-results" data-toggle="tab">2009 Results</a></li>
+			<li>
+				<a href="#" class="close-pages" style="padding:14px; border:1px solid #ccc; margin-left:10px; font-size:30px; color: #999;">&times;</a>
+			</li>
+		</ul>
+		<div class="tab-content">
+			<section id="ward-candidates" class="page-area tab-pane active">
+
+				<div id="flyaround">
+
+					<div id="details-pane"></div>
+
+
+					<ul id="rollerCoaster" class="roundabout-holder"></ul>
+
+
+					<div id="right-thumbs">
+						<ul></ul>
+					</div>
 				</div>
-			</div>
+				<ul class="nav nav-pills" id="nav-admin">
+					<li><a href="#ward-results" ><i class="icon-plus"></i></a></li>
+					<li><a href="#ward-candidates"><i class="icon-pencil"></i></a></li>
+					
+					<li><a href="#ward-results" ><i class="icon-trash"></i></a></li>
+					
+				</ul>
+
+				<footer class="bubble">
+					<button class="btn btn-primary nextprev-btn prev">Previous</button>
+					<button class="btn btn-primary nextprev-btn next">Next</button>
+					<div class="s g" style="margin-top: -5px;">In alphabetical Order</div>
+					<h1>Candidates <span class="data-candidate-count"></span><br>
+						<small class="data-ward-name"></small>
+					</h1>
+
+				</footer>
+			</section>
+			<section id="ward-results" class="page-area tab-pane">
+				<h2 style="margin-top: 50px; margin-left: 50px;">Will this year be any different?</h2>
+
+				<div id="ward-results-area" style="margin: 50px; "></div>
+
+				<footer class="bubble">
+					<h1>2009 General elections result<br>
+						<small class="data-ward-name"></small>
+					</h1>
+
+				</footer>
 
 
-			<footer>
-				<button class="btn btn-primary nextprev-btn prev">Previous</button>
-				<button class="btn btn-primary nextprev-btn next">Next</button>
-				<div class="s g" style="margin-top: -5px;">In alphabetical Order</div>
-				<h1>Candidates <span class="data-candidate-count"></span><br>
-					<small class="data-ward-name"></small>
-				</h1>
-
-			</footer>
-		</section>
-		<section id="ward-results" class="page-area tab-pane">
-			<h2 style="margin-top: 50px; margin-left: 50px;">Will this year be any different?</h2>
-
-			<div id="ward-results-area" style="margin: 50px; "></div>
-
-			<footer>
-				<h1>2009 General elections result<br>
-					<small class="data-ward-name"></small>
-				</h1>
-
-			</footer>
-
-
-		</section>
+			</section>
+		</div>
 	</div>
-	<div class="loading wide" id="page-area-loading" ></div>
+	<div class="loading wide" id="page-area-loading"></div>
 </article>
 <script type="text/javascript">
 	var default_title = "{{ page['meta']['title']|default("") }}";

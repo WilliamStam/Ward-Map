@@ -23,12 +23,36 @@ class data {
 
 		$ID = $this->f3->get("PARAMS['ID']");
 		
-		$ward = new models\wards();
-		$ward = $ward->get_ward_id($ID);
+		$dataO = new models\data($ID);
+		$data = $dataO->getWard();
 
-		$return = $ward;
-		$return['councillors']=models\councillors::getAll("wd_councillors.ward_ID='".$ward['ID']."'","name ASC");
-		$return['results']=models\results::getAll("wd_results.ward_ID='".$ward['ID']."'","votes DESC");
+		$data['councillors'] = models\councillors::getAll("ward_ID='$ID'","name ASC");
+
+		//test_array($data['councillors']); 
+		$r = array();
+		foreach ($data['results']['parties'] as $key => $row)
+		{
+			$r[$key] = $row['votes'];
+		}
+
+		//test_array($r); 
+
+		array_multisort($r,  SORT_DESC, $data['results']['parties']);
+
+
+		//$data['results']['parties'] = array_slice($data['results']['parties'], 0, 5);
+
+
+		$data['desc'] =  "Ward: ".$data['ward_id'];
+
+		//test_array($data); 
+		
+		$return = $data;
+		//$return['councillors']=models\councillors::getAll("wd_councillors.ward_ID='".$ward['ID']."'","name ASC");
+	//	$return['results']=models\results::getAll($ID,5,"votes","DESC");
+
+
+		// http://iec.code4sa.org/votes/by_ward/?ward=93401002&format=json
 
 
 		return $GLOBALS["output"]['data'] = $return;

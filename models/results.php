@@ -41,34 +41,53 @@ class results extends _ {
 
 
 
-	public static function getAll($where = "", $orderby = "", $limit = "") {
+	public static function getAll($wardID,$limit="",$order_column="votes",$order_direction="DESC") {
 		$timer = new timer();
 		$f3 = \Base::instance();
+		$result = array();
 
-		if ($where) {
-			$where = "WHERE " . $where . "";
-		} else {
-			$where = " ";
+	
+		
+
+		//$json = file_get_contents('http://iec.code4sa.org/votes/by_ward/?ward='.$wardID.'&format=json');
+		$json = file_get_contents("http://iec-v2.code4sa.org/national/2009/ward/$wardID/");
+		$obj = json_decode($json);
+		
+		test_array($obj); 
+		$obj = $obj->results;
+		$obj = $obj[0];
+		$obj = $obj->votes;
+		//test_array($obj); 
+		foreach ($obj as $item){
+
+			$result[] = array(
+				"party"=>$item->party,
+				"votes"=>$item->votes,
+			);
 		}
 
-		if ($orderby) {
-			$orderby = " ORDER BY " . $orderby;
+
+
+		$return = array();
+		foreach ($result as $key => $row)
+		{
+			$return[$key] = $row[$order_column];
 		}
-		if ($limit) {
-			$limit = " LIMIT " . $limit;
+		
+		if ($order_direction=="ASC"){
+			
 		}
-
-
-
-		$result = $f3->get("DB")->exec("
-			SELECT DISTINCT wd_results.*, wd_parties.name as party
-
-			FROM wd_results LEFT JOIN wd_parties ON wd_results.party_ID = wd_parties.ID
-			$where
-			$orderby
-			$limit;
-		",''
-		);
+		
+		array_multisort($return,  ($order_direction=="DESC")?SORT_DESC:SORT_ASC, $result);
+		
+		
+		if ($limit){
+			$result = array_slice($result, 0, $limit);
+		}
+		
+		//test_array($result); 
+		
+	
 
 		$return = $result;
 		$timer->_stop(__NAMESPACE__, __CLASS__, __FUNCTION__, func_get_args());

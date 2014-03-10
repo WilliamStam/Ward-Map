@@ -12,6 +12,7 @@ function getWard() {
 	if (ward){
 		$("#page-area").fadeIn(500);
 		$("#page-area-loading").show();
+		$("#page-area-content").hide();
 		$.getData("/data/ward/"+ward,function(data_ward){
 			//$("#page-area").fadeIn(500);
 
@@ -20,9 +21,16 @@ function getWard() {
 
 			$("#right-thumbs ul").jqotesub($("#template-thumbs-item"), data_ward);
 			$("#page-area-loading").hide();
-
+			$("#page-area-content").show();
 
 			document.title = default_title_prefix+data_ward.desc;
+			
+			if (data_ward.councillors.length==0){
+				$("#details-pane").css({"opacity": 0, "left": "-200px"});
+				$(".nextprev-btn").hide();
+			} else {
+				$(".nextprev-btn").show();
+			}
 			
 			roundable();
 			//getCouncilor();
@@ -32,27 +40,24 @@ function getWard() {
 	} else {
 		document.title = default_title;
 	}
-	
-
-
-	
-
-
-
-
 }
+
+
 function getCouncilor() {
 	var sub = $.bbq.getState("sub");
 
 	
 	//console.log(sub); 
 	
-	
+
 	if (sub){
 		$("#details-pane").html("<div class='loading small'></div>").stop(true, true).animate({"opacity": 1, "left": "40px"}, 200, function () {});
 		$.getData("/data/councillor/"+sub,function(data){
 			$("#details-pane").jqotesub($("#template-roundabout-item-details"), data);
 		},"councilor");
+	} else {
+		
+		$("#details-pane").stop(true, true).animate({"opacity": 0, "left": "-200px"}, 300, function () {});
 	}
 }
 
@@ -141,6 +146,12 @@ $(document).ready(function () {
 	
 	$(document).on("shown", "#nav-top", function () {
 		$('#rollerCoaster').roundabout("relayoutChildren");
+
+	});
+
+
+	$(document).on("click", "#nav-admin-add", function () {
+		
 
 	});
 	

@@ -1,4 +1,3 @@
-
 <script type="text/x-jqote-template" id="template-thumbs-item">
 	<![CDATA[
 	<% for (var i in this.councillors) { %>
@@ -10,16 +9,20 @@
 </script>
 <script type="text/x-jqote-template" id="template-roundabout-item">
 	<![CDATA[
-	<% for (var i in this.councillors) { %>
-	<li data-id="<%= this.councillors[i].ID %>">
-		<img src="/thumb/councillor/<%= this.councillors[i].ID %>/400/400/<%= this.councillors[i].img %>" class="glow"><br>
-
-		<h2>
-			<%= this.councillors[i].name %><br>
-			<small><%= this.councillors[i].party %></small>
-
-		</h2>
-	</li>
+	<% if (this.councillors.length > 0){ %>
+		<% for (var i in this.councillors) { %>
+		<li data-id="<%= this.councillors[i].ID %>">
+			<img src="/thumb/councillor/<%= this.councillors[i].ID %>/400/400/<%= this.councillors[i].img %>" class="glow"><br>
+	
+			<h2>
+				<%= this.councillors[i].name %><br>
+				<small><%= this.councillors[i].party %></small>
+	
+			</h2>
+		</li>
+		<% } %>
+	<% } else { %>
+			<li style="padding-top: 100px;">No candidates to show</li>
 	<% } %>
 
 
@@ -44,51 +47,69 @@
 	<![CDATA[
 	<table class="table" style="border-bottom: 1px solid #CCCCCC">
 		<tr>
-			<td style="vertical-align: top; border-right: 1px solid #ccc;">
-				<table class="table table-hover">
+			<td style="vertical-align: top; border-right: 1px solid #ccc; width:40%;">
+				<table class="table table-hover" style="border-bottom: 1px solid #DDDDDD">
 					<thead>
 					<tr>
-						<th></th>
-						<th>Value</th>
+						<th style="width: 70%"></th>
+						<th style="width: 30%">Value</th>
 					</tr>
 					</thead>
 					<tbody>
 					<tr>
 						<td>Registered Voters</td>
-						<td><%= this.registered %></td>
+						<td><%= this.results.registered %></td>
 					</tr>
 					<tr>
 						<td>Total Votes</td>
-						<td><%= this.votes %></td>
+						<td><%= this.results.voted %></td>
 					</tr>
 					<tr>
 						<td>Percentage Turnout</td>
-						<td><%= Math.round(((this.votes/this.registered)*100) * 100) / 100 %>%</td>
+						<td><%= Math.round(((this.results.voted/this.results.registered)*100) * 100) / 100 %>%</td>
+					</tr>
+
+					</tbody>
+				</table>
+				<table class="table table-hover" style="border-bottom: 1px solid #DDDDDD">
+
+					<tbody>
+
+					<tr>
+						<td style="width: 70%">Spoilt Votes</td>
+						<td style="width: 30%"><%= this.results.spoilt %></td>
+					</tr>
+					<tr>
+						<td>section 24a Votes</td>
+						<td><%= this.results.section_24a %></td>
 					</tr>
 					</tbody>
 				</table>
 			</td>
 			<td style="vertical-align: top">
-				<table class="table table-hover">
-					<thead>
-					<tr>
-						<th>Party</th>
-						<th>Votes</th>
-					</tr>
-					</thead>
-					<tbody>
-					<% for (var i in this.results) { %>
-					<tr>
-						<td><%= this.results[i].party %>
-							<div style="width: <%= Math.round(((this.results[i].votes / this.votes)*100) * 100) / 100 %>%" class="votegraph"></div>
-						</td>
-						<td><%= this.results[i].votes %></td>
-					</tr>
-					<% } %>
+				<div style="max-height: 310px; overflow: auto">
+					<table class="table table-hover">
+						<thead>
+						<tr>
+							<th>Party</th>
+							<th>Votes</th>
+						</tr>
+						</thead>
+						<tbody>
+						<% for (var i in this.results.parties) { %>
+						<tr>
+							<td><%= this.results.parties[i].party %>
+								<div style="width: <%= Math.round(((this.results.parties[i].votes / this.results.voted)*100) * 100) / 100 %>%" class="votegraph"></div>
+							</td>
+							<td><%= this.results.parties[i].votes %></td>
+						</tr>
+						<% } %>
 
 
-					</tbody>
-				</table>
+						</tbody>
+					</table>
+				</div>
+
 			</td>
 		</tr>
 	</table>
