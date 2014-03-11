@@ -26,7 +26,7 @@ class login {
 			}
 			
 		} else {
-			$username = $_COOKIE['username'];
+			$username = isset($_COOKIE['username'])?$_COOKIE['username']:"";
 		}
 		
 		
