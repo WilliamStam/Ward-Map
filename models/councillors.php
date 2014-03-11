@@ -74,7 +74,51 @@ class councillors extends _ {
 	}
 
 
+	public static function save($ID, $values) {
+		$timer = new timer();
+		$f3 = \Base::instance();
 
 
+		$old = array();
+		$lookupColumns = array();
+
+		$a = new \DB\SQL\Mapper($f3->get("DB"),"wd_councillors");
+		$a->load("ID='$ID'");
+
+		foreach ($values as $key => $value) {
+			$old[$key] = isset($a->$key) ? $a->$key : "";
+			if (isset($a->$key)) {
+
+				$a->$key = $value;
+			}
+		}
+		
+		$a->save();
+
+		$ID = $a->ID;
+
+
+		$timer->stop(array("Models" => array("Class" => __CLASS__, "Method" => __FUNCTION__)), func_get_args());
+		return $ID;
+
+	}
+	public static function _remove($ID) {
+		$timer = new timer();
+		$f3 = \Base::instance();
+		$user = $f3->get("user");
+
+
+		$a = new \DB\SQL\Mapper($f3->get("DB"),"wd_councillors");
+		$a->load("ID='$ID'");
+
+		$a->erase();
+
+		$a->save();
+
+
+		$timer->stop(array("Models" => array("Class" => __CLASS__, "Method" => __FUNCTION__)), func_get_args());
+		return "done";
+
+	}
 
 }

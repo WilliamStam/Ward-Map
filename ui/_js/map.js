@@ -1,19 +1,17 @@
-
-
 var markers = [];
 function getWard() {
 
 	var ward = $.bbq.getState("ward");
 
 
-	
-	
 
-	if (ward){
+
+
+	if (ward) {
 		$("#page-area").fadeIn(500);
 		$("#page-area-loading").show();
 		$("#page-area-content").hide();
-		$.getData("/data/ward/"+ward,function(data_ward){
+		$.getData("/data/ward/" + ward, function (data_ward) {
 			//$("#page-area").fadeIn(500);
 
 			$('#rollerCoaster').jqotesub($("#template-roundabout-item"), data_ward);
@@ -23,20 +21,20 @@ function getWard() {
 			$("#page-area-loading").hide();
 			$("#page-area-content").show();
 
-			document.title = default_title_prefix+data_ward.desc;
-			
-			if (data_ward.councillors.length==0){
+			document.title = default_title_prefix + data_ward.desc;
+
+			if (data_ward.councillors.length == 0) {
 				$("#details-pane").css({"opacity": 0, "left": "-200px"});
 				$(".nextprev-btn").hide();
 			} else {
 				$(".nextprev-btn").show();
 			}
-			
+
 			roundable();
 			//getCouncilor();
 			$(".data-ward-name").html(data_ward.desc)
 			$(".data-candidate-count").html("(" + data_ward.councillors.length + ")")
-		},"ward");
+		}, "ward");
 	} else {
 		document.title = default_title;
 	}
@@ -46,39 +44,41 @@ function getWard() {
 function getCouncilor() {
 	var sub = $.bbq.getState("sub");
 
-	
-	//console.log(sub); 
-	
 
-	if (sub){
-		$("#details-pane").html("<div class='loading small'></div>").stop(true, true).animate({"opacity": 1, "left": "40px"}, 200, function () {});
-		$.getData("/data/councillor/"+sub,function(data){
+	//console.log(sub); 
+
+
+	if (sub) {
+		$("#details-pane").html("<div class='loading small'></div>").stop(true, true).animate({"opacity": 1, "left": "40px"}, 200, function () {
+		});
+		$.getData("/data/councillor/" + sub, function (data) {
 			$("#details-pane").jqotesub($("#template-roundabout-item-details"), data);
-		},"councilor");
+		}, "councilor");
 	} else {
-		
-		$("#details-pane").stop(true, true).animate({"opacity": 0, "left": "-200px"}, 300, function () {});
+
+		$("#details-pane").stop(true, true).animate({"opacity": 0, "left": "-200px"}, 300, function () {
+		});
 	}
 }
 
 
 function roundable(sub) {
-	
+
 	sub = $.bbq.getState("sub");
 	sub = sub ? sub : "";
 
 	var startingChild = 0;
-	$("#right-thumbs ul li").each(function(i,v){
+	$("#right-thumbs ul li").each(function (i, v) {
 		//console.log(i); 
-		if ($(this).attr("data-id")==sub){
+		if ($(this).attr("data-id") == sub) {
 			startingChild = i;
 		}
 	});
-	
+
 	//console.info(sub);
 	//console.info(startingChild);
-	
-	
+
+
 	$('#rollerCoaster').roundabout({
 		shape             : 'lazySusan',
 		minOpacity        : 0.3,
@@ -96,12 +96,12 @@ function roundable(sub) {
 
 
 
-
+var uploader;
 
 $(document).ready(function () {
 	getWard();
-	
-	
+
+
 	$(document).on("roundfocus", "#rollerCoaster li", function () {
 		//console.log("focus");
 
@@ -110,15 +110,18 @@ $(document).ready(function () {
 		$.bbq.pushState({"sub": sub});
 		getCouncilor();
 
-		$("#right-thumbs").stop(true, true).animate({"opacity": 1, "right": "50px"}, 200, function () {});
-		$("#right-thumbs ul li[data-id='"+sub+"']").addClass("active");
-		
+		$("#right-thumbs").stop(true, true).animate({"opacity": 1, "right": "50px"}, 200, function () {
+		});
+		$("#right-thumbs ul li[data-id='" + sub + "']").addClass("active");
+
 
 	});
 	$(document).on("roundblur", "#rollerCoaster li", function () {
 		//console.log("blur");
-		$("#details-pane").animate({"opacity": 0, "left": "-200px"}, 300, function () {});
-		$("#right-thumbs").animate({"opacity": 0, "right": "-200px"}, 300, function () {});
+		$("#details-pane").animate({"opacity": 0, "left": "-200px"}, 300, function () {
+		});
+		$("#right-thumbs").animate({"opacity": 0, "right": "-200px"}, 300, function () {
+		});
 		$("#right-thumbs ul li.active").removeClass("active");
 
 	});
@@ -137,30 +140,168 @@ $(document).ready(function () {
 
 
 		$('#rollerCoaster').roundabout("animateToChild", i)
-		
-		
-		
+
+
+
 
 	});
-	
-	
+
+
 	$(document).on("shown", "#nav-top", function () {
 		$('#rollerCoaster').roundabout("relayoutChildren");
 
 	});
 
 
-	$(document).on("click", "#nav-admin-add", function () {
-		
+	$(document).on("click", "#nav-admin-add", function (e) {
+		e.preventDefault();
+		var sub = "_";
+		$.getData("/data/admin/candidates/" + sub, function (data) {
+			if (data.ward_ID == "") data.ward_ID = $.bbq.getState("ward");
+			$("#modal-admin").jqotesub($("#template-admin-candidate"), data).modal("show");
+			uploadstuff()
+		}, "admin_candidate");
 
+
+		return false;
 	});
-	
+
+	$(document).on("click", "#nav-admin-edit", function (e) {
+		e.preventDefault();
+		var sub = $.bbq.getState("sub");
+		$.getData("/data/admin/candidates/" + sub, function (data) {
+			if (data.ward_ID == "") data.ward_ID = $.bbq.getState("ward");
+			$("#modal-admin").jqotesub($("#template-admin-candidate"), data).modal("show");
+			uploadstuff()
+		}, "admin_candidate");
+
+
+		return false;
+	});
+
+	$(document).on("click", "#nav-admin-delete", function (e) {
+		e.preventDefault();
+		
+		if (confirm("Are you sure you want to delete this candidate?")){
+			
+			$.post("/save/admin/candidate/delete?ID="+$.bbq.getState("sub"),{},function(){
+				$.bbq.removeState("sub");
+				getWard();
+			})
+			
+		}
+		return false;
+	});
+
+
+
+
+
 
 
 	google.maps.event.addDomListener(window, 'load', initialize);
 
 });
+function uploadstuff() {
 
+
+
+	var uploader = new plupload.Uploader({
+		runtimes           : 'html5,flash,silverlight,html4',
+		browse_button      : 'pickfiles', // you can pass in id...
+		container          : document.getElementById('container'), // ... or DOM Element itself
+		url                : '/save/admin/candidate/upload',
+		flash_swf_url      : '/ui/plupload/js/Moxie.swf',
+		silverlight_xap_url: '/ui/plupload/js/Moxie.xap',
+		multipart_params   : {},
+		unique_names       : true,
+		multi_selection    : false,
+		filters            : {
+			max_file_size: '30mb',
+			mime_types   : [
+				{title: "Image files", extensions: "jpg,gif,png,jpeg"},
+			]
+		},
+
+		init: {
+			PostInit    : function () {
+				document.getElementById('filelist').innerHTML = '';
+
+
+
+				/*
+				 document.getElementById('uploadfiles').onclick = function() {
+				 uploader.start();
+				 return false;
+				 };
+				 */
+			},
+			BeforeUpload: function (up, file) {
+				//up.settings.multipart_params["candidate_ID"] = $("#ID").val();
+				up.settings.multipart_params = {
+					"candidate_name" : $("#candidate_name").val(),
+					"candidate_ID"   : $("#candidate_ID").val(),
+					"candidate_party": $("#candidate_party").val()
+				}
+				up.settings.url = '/save/admin/candidate/upload?ward_ID=' + $("#modal-admin form #ward_ID").val();
+			},
+			FileUploaded: function (up, file) {
+				if (up.files.length == (up.total.uploaded + up.total.failed)) {
+					getWard();
+					$("#modal-admin").modal("hide");
+				}
+
+			},
+			FilesAdded  : function (up, files) {
+				plupload.each(files, function (file) {
+					document.getElementById('filelist').innerHTML = '<div id="' + file.id + '">' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b></div>';
+				});
+			},
+
+			UploadProgress: function (up, file) {
+				document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
+
+				$("#progress").css("width", file.percent);
+			},
+
+			Error: function (up, err) {
+				document.getElementById('console').innerHTML += "\nError #" + err.code + ": " + err.message;
+			}
+		}
+	});
+
+
+
+
+
+	uploader.init();
+
+
+	$("#modal-admin form").on("submit", function (e) {
+		e.preventDefault();
+
+		var data = $(this).serialize();
+
+		// console.log(uploader.files.length)
+		//$("#pickfiles").start();
+
+		if (uploader.files.length === 0) {
+			$.post('/save/admin/candidate?ward_ID=' + $("#modal-admin form #ward_ID").val(), data, function () {
+				getWard();
+				$("#modal-admin").modal("hide");
+			});
+		} else {
+			uploader.start();
+		}
+
+
+
+		return false;
+	});
+
+
+
+}
 
 function initialize() {
 
@@ -269,7 +410,7 @@ function initialize() {
 			text = test;
 		}
 		//	console.info(text); 
-	
+
 		$.bbq.pushState({"ward": text});
 		getWard();
 

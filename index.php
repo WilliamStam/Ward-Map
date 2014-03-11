@@ -151,6 +151,12 @@ $f3->route('GET /min/js*', 'general->_javascript');
 $f3->route('GET /', 'controllers\home->page');
 $f3->route('GET /data/ward/@ID', 'controllers\data\data->ward');
 $f3->route('GET /data/councillor/@ID', 'controllers\data\data->councilor');
+$f3->route('GET /data/admin/candidates/', 'controllers\data\admin_candidates->details');
+$f3->route('GET /data/admin/candidates/@ID', 'controllers\data\admin_candidates->details');
+
+$f3->route('GET|POST /save/admin/candidate', 'controllers\save\save->candidate');
+$f3->route('GET|POST /save/admin/candidate/upload', 'controllers\save\save->upload_candidate');
+$f3->route('GET|POST /save/admin/candidate/delete', 'controllers\save\save->delete_candidate');
 
 
 

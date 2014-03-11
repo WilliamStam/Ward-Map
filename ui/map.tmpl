@@ -33,10 +33,10 @@
 					</div>
 				</div>
 				<ul class="nav nav-pills" id="nav-admin">
-					<li><a href="#ward-results" ><i class="icon-plus"></i></a></li>
-					<li><a href="#ward-candidates"><i class="icon-pencil"></i></a></li>
+					<li><a href="#" id="nav-admin-add"><i class="icon-plus"></i></a></li>
+					<li><a href="#" id="nav-admin-edit" ><i class="icon-pencil"></i></a></li>
 					
-					<li><a href="#ward-results" ><i class="icon-trash"></i></a></li>
+					<li><a href="#" id="nav-admin-delete" ><i class="icon-trash"></i></a></li>
 					
 				</ul>
 
@@ -68,6 +68,12 @@
 	</div>
 	<div class="loading wide" id="page-area-loading"></div>
 </article>
+
+<div class="modal hide fade" id="modal-admin" >
+	
+</div>
+
+
 <script type="text/javascript">
 	var default_title = "{{ page['meta']['title']|default("") }}";
 	var default_title_prefix = "{{ _cfg['default_title_prefix'] }}";
