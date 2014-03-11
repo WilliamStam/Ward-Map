@@ -63,6 +63,9 @@ class user {
 		if (count($result)) {
 			$result = $result[0];
 			$ID = $result['ID'];
+			$f3->get("DB")->exec("UPDATE wd_users SET lastlogin = now() WHERE ID = '$ID';");
+			
+			
 			$_SESSION['uID'] = $ID;
 			if (isset($_COOKIE['username'])) {
 				$_COOKIE['username'] = $result['username'];
