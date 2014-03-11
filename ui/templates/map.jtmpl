@@ -182,3 +182,28 @@
 	</form>
 	]]>
 </script>
+<script type="text/x-jqote-template" id="template-local-elections">
+	<![CDATA[
+	<h2 style="margin-top: 50px; margin-left: 50px;">Local Government Elections 2011</h2>
+
+	<article style="position: absolute; top: 100px; left:50px; right:50px; bottom:0px;">
+		<ul class="nav nav-tabs" id="myTab" style="margin-bottom:0;">
+			<li class="pull-right" style="margin-right:10px;"><a href="#local-elec-tab-2" data-toggle="tab">Seat Allocation</a></li>
+			<li class="active pull-right"><a href="#local-elec-tab-1" data-toggle="tab">Ward Results</a></li>
+			
+		</ul>
+
+		<div class="tab-content" style="margin-top:3px;">
+			<div class="tab-pane active" id="local-elec-tab-1">
+				<embed class="pdf-viewer"  src="http://www.elections.org.za/content/LGEPublicReports/197/Detailed%20Results/NP/<%= this.municipality %>/<%= this.ward_id %>.pdf" type="application/pdf" style="width: 100%; height: 600px;"  ></embed>
+
+			</div>
+			<div class="tab-pane" id="local-elec-tab-2">
+				<embed class="pdf-viewer"  src="http://www.elections.org.za/content/LGEPublicReports/197/Seat%20Calculation%20Detail/NP/<%= this.municipality %>.pdf" type="application/pdf" style="width: 100%; height: 600px;"  ></embed>
+			</div>
+		</div>
+
+
+	</article>
+	]]>
+</script>

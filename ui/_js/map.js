@@ -14,8 +14,10 @@ function getWard() {
 		$.getData("/data/ward/" + ward, function (data_ward) {
 			//$("#page-area").fadeIn(500);
 
+			//console.log(data_ward)
 			$('#rollerCoaster').jqotesub($("#template-roundabout-item"), data_ward);
 			$('#ward-results-area').jqotesub($("#template-results"), data_ward);
+			$('#local-elections').jqotesub($("#template-local-elections"), data_ward);
 
 			$("#right-thumbs ul").jqotesub($("#template-thumbs-item"), data_ward);
 			$("#page-area-loading").hide();
@@ -147,9 +149,22 @@ $(document).ready(function () {
 	});
 
 
-	$(document).on("shown", "#nav-top", function () {
-		$('#rollerCoaster').roundabout("relayoutChildren");
+	$(document).on("shown", "#nav-top", function (e) {
 
+		//e.target // activated tab
+		//e.relatedTarget // previous tab
+		
+		//console.log(e.target)
+		
+		if ($(e.target).attr("href")=="#ward-candidates"){
+			$('#rollerCoaster').roundabout("relayoutChildren");
+		}
+		if ($(e.target).attr("href")=="#local-elections"){
+			$(".pdf-viewer").css("height", $("#local-elections").height()-140);
+		}
+		
+
+		
 	});
 
 
@@ -302,6 +317,7 @@ function uploadstuff() {
 
 
 }
+
 
 function initialize() {
 

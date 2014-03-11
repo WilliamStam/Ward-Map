@@ -218,3 +218,9 @@ footer.bubble {
 .twitter-typeahead {
   z-index: 1501;
 }
+#myTab {
+  margin-top: 7px;
+}
+#myTab li a {
+  padding: 10px 30px;
+}
