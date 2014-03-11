@@ -58,9 +58,9 @@ class template {
 
 		$this->vars['_uri'] = $_SERVER['REQUEST_URI'];
 		$this->vars['_folder'] = $this->vars['folder'];
+		$this->vars['_user'] = $this->f3->get('user');
 		$this->vars['_version'] = $this->f3->get('version');
 		$this->vars['_cfg'] = $cfg;
-		$this->vars['_docs'] = $this->f3->get('docs');
 		$this->vars['isLocal'] = isLocal();
 		
 

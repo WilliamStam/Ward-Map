@@ -27,9 +27,9 @@ class save {
 
 
 		$return = $_POST;
-		$ID = $_REQUEST["candidate_ID"] ? $_REQUEST["candidate_ID"] : "";
+		$ID = isset($_REQUEST["candidate_ID"]) ? $_REQUEST["candidate_ID"] : "";
 
-		$values = array("ward_ID" => $_REQUEST['ward_ID'] ? $_REQUEST['ward_ID'] : "", "party" => $_REQUEST['candidate_party'] ? $_REQUEST['candidate_party'] : "", "name" => $_REQUEST['candidate_name'] ? $_REQUEST['candidate_name'] : "",);
+		$values = array("ward_ID" => isset($_REQUEST['ward_ID']) ? $_REQUEST['ward_ID'] : "", "party" => isset($_REQUEST['candidate_party']) ? $_REQUEST['candidate_party'] : "", "name" => isset($_REQUEST['candidate_name']) ? $_REQUEST['candidate_name'] : "",);
 
 
 		$ID = \models\councillors::save($ID, $values);
@@ -46,7 +46,7 @@ class save {
 
 
 
-		$ID = $_REQUEST["ID"] ? $_REQUEST["ID"] : "";
+		$ID = isset($_REQUEST["ID"]) ? $_REQUEST["ID"] : "";
 		
 		$ID = \models\councillors::_remove($ID);
 
@@ -64,7 +64,7 @@ class save {
 
 		//test_array($cfg);
 
-		$ID = $_REQUEST["candidate_ID"] ? $_REQUEST["candidate_ID"] : "";
+		$ID = isset($_REQUEST["candidate_ID"]) ? $_REQUEST["candidate_ID"] : "";
 
 
 
@@ -182,7 +182,7 @@ class save {
 
 
 
-		$values = array("ward_ID" => $_REQUEST['ward_ID'] ? $_REQUEST['ward_ID'] : "", "party" => $_REQUEST['candidate_party'] ? $_REQUEST['candidate_party'] : "", "name" => $_REQUEST['candidate_name'] ? $_REQUEST['candidate_name'] : "", "folder" => $_REQUEST['ward_ID'] ? $_REQUEST['ward_ID'] : "", "img" => $fileName,);
+		$values = array("ward_ID" => isset($_REQUEST['ward_ID']) ? $_REQUEST['ward_ID'] : "", "party" => isset($_REQUEST['candidate_party']) ? $_REQUEST['candidate_party'] : "", "name" => isset($_REQUEST['candidate_name']) ? $_REQUEST['candidate_name'] : "", "folder" => isset($_REQUEST['ward_ID']) ? $_REQUEST['ward_ID'] : "", "img" => $fileName,);
 
 
 		$ID = \models\councillors::save($ID, $values);

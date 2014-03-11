@@ -215,14 +215,6 @@ footer.bubble {
   margin: 0;
   z-index: 1500;
 }
-#teh-who {
-  position: absolute;
-  bottom: 4px;
-  left: 50px;
-  right: 50px;
-  text-align: center;
-  text-shadow: #ffffff 0.1em 0.1em 0.2em;
-}
 .twitter-typeahead {
   z-index: 1501;
 }

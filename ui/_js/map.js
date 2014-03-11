@@ -243,7 +243,7 @@ function uploadstuff() {
 					"candidate_ID"   : $("#candidate_ID").val(),
 					"candidate_party": $("#candidate_party").val()
 				}
-				up.settings.url = '/save/admin/candidate/upload?ward_ID=' + $("#modal-admin form #ward_ID").val();
+				up.settings.url = '/save/admin/candidate/upload?ward_ID=' + $("#form-admin-candidate #ward_ID").val();
 			},
 			FileUploaded: function (up, file) {
 				if (up.files.length == (up.total.uploaded + up.total.failed)) {
@@ -277,7 +277,7 @@ function uploadstuff() {
 	uploader.init();
 
 
-	$("#modal-admin form").on("submit", function (e) {
+	$("#form-admin-candidate").on("submit", function (e) {
 		e.preventDefault();
 
 		var data = $(this).serialize();
@@ -286,7 +286,7 @@ function uploadstuff() {
 		//$("#pickfiles").start();
 
 		if (uploader.files.length === 0) {
-			$.post('/save/admin/candidate?ward_ID=' + $("#modal-admin form #ward_ID").val(), data, function () {
+			$.post('/save/admin/candidate?ward_ID=' + $("#form-admin-candidate #ward_ID").val(), data, function () {
 				getWard();
 				$("#modal-admin").modal("hide");
 			});

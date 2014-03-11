@@ -123,7 +123,7 @@
 
 <script type="text/x-jqote-template" id="template-admin-candidate">
 	<![CDATA[
-	<form class="form-horizontal" style="margin:0;" method="post" enctype="multipart/form-data">
+	<form class="form-horizontal" style="margin:0;" method="post" enctype="multipart/form-data" id="form-admin-candidate" >
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 			<h3>Candidate - <% if (this.ID) { %>Edit<% } else { %>Add<% } %></h3>

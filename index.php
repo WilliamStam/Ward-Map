@@ -82,6 +82,15 @@ $f3->set('VERSION', $version);
 
 
 
+$userO = new \models\user();
+$uID = isset($_SESSION['uID']) ? $_SESSION['uID'] : "";
+$user = $userO->get($uID);
+
+
+$f3->set('user', $user);
+
+
+
 
 $f3->route('GET /thumb/councillor/@ID/@width/@height/*', function ($f3, $params) {
 		$cfg = $f3->get("cfg");
@@ -159,6 +168,14 @@ $f3->route('GET|POST /save/admin/candidate/upload', 'controllers\save\save->uplo
 $f3->route('GET|POST /save/admin/candidate/delete', 'controllers\save\save->delete_candidate');
 
 
+$f3->route('GET|POST /login', 'controllers\login->page');
+
+$f3->route('GET|POST /logout', function ($app, $params) use ($user) {
+		session_unset();
+		//session_destroy();
+		$app->reroute("/login");
+	}
+);
 
 $f3->route('GET /php', function () {
 		phpinfo();

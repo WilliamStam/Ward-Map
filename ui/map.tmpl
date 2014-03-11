@@ -32,6 +32,8 @@
 						<ul></ul>
 					</div>
 				</div>
+				
+				{% if _user['ID'] %}
 				<ul class="nav nav-pills" id="nav-admin">
 					<li><a href="#" id="nav-admin-add"><i class="icon-plus"></i></a></li>
 					<li><a href="#" id="nav-admin-edit" ><i class="icon-pencil"></i></a></li>
@@ -39,6 +41,7 @@
 					<li><a href="#" id="nav-admin-delete" ><i class="icon-trash"></i></a></li>
 					
 				</ul>
+				{% endif %}
 
 				<footer class="bubble">
 					<button class="btn btn-primary nextprev-btn prev">Previous</button>

@@ -12,8 +12,8 @@ class home {
 		$cfg = $this->f3->get("cfg");
 		$tmpl = new \template("_.tmpl", "ui/", true);
 		$tmpl->page = array(
-			"section"=> "bookings",
-			"sub_section"=> "provisional",
+			"section"=> "",
+			"sub_section"=> "",
 			"template"=> "map",
 			"meta"    => array(
 				"title"=> $cfg['default_title'],
