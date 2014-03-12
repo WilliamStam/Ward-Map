@@ -249,6 +249,18 @@
 			<td>LatLong:</td>
 			<td><%= this.Lat %>, <%= this.Lon %></td>
 		</tr>
+		<% if (this.OpenTime) { %>
+		<tr>
+			<td>Time Open:</td>
+			<td><%= this.OpenTime %> </td>
+		</tr>
+		<% } %>
+		<% if (this.CloseTime) { %>
+		<tr>
+			<td>Close Open:</td>
+			<td><%= this.CloseTime %></td>
+		</tr>
+		<% } %>
 	</table>
 
 	
