@@ -153,18 +153,18 @@ $(document).ready(function () {
 
 		//e.target // activated tab
 		//e.relatedTarget // previous tab
-		
+
 		//console.log(e.target)
-		
-		if ($(e.target).attr("href")=="#ward-candidates"){
+
+		if ($(e.target).attr("href") == "#ward-candidates") {
 			$('#rollerCoaster').roundabout("relayoutChildren");
 		}
-		if ($(e.target).attr("href")=="#local-elections"){
-			$(".pdf-viewer").css("height", $("#local-elections").height()-140);
+		if ($(e.target).attr("href") == "#local-elections") {
+			$(".pdf-viewer").css("height", $("#local-elections").height() - 140);
 		}
-		
 
-		
+
+
 	});
 
 
@@ -196,20 +196,47 @@ $(document).ready(function () {
 
 	$(document).on("click", "#nav-admin-delete", function (e) {
 		e.preventDefault();
-		
-		if (confirm("Are you sure you want to delete this candidate?")){
-			
-			$.post("/save/admin/candidate/delete?ID="+$.bbq.getState("sub"),{},function(){
+
+		if (confirm("Are you sure you want to delete this candidate?")) {
+
+			$.post("/save/admin/candidate/delete?ID=" + $.bbq.getState("sub"), {}, function () {
 				$.bbq.removeState("sub");
 				getWard();
 			})
-			
+
 		}
 		return false;
 	});
 
 
+	$(document).on("click", ".btn-open-ward", function (e) {
+		e.preventDefault();
+		var wardID = $(this).attr("data-ward");
 
+		$.bbq.pushState({"ward":wardID});
+		getWard();
+
+		return false;
+	});
+
+	
+
+	
+	$(document).mouseup(function (e)
+	{
+		var container = $("#map-marker-details");
+
+		if (!container.is(e.target) // if the target of the click isn't the container...
+			&& container.has(e.target).length === 0) // ... nor a descendant of the container
+		{
+			container.stop(true,true).animate({"opacity": 0, "right": "-200px"}, 300, function () {});
+		}
+	});
+	
+	
+	
+
+//map-canvas
 
 
 
@@ -374,6 +401,17 @@ function initialize() {
 				position: place.geometry.location
 			});
 
+
+			google.maps.event.addListener(marker, 'click', function () {
+//				console.log(marker.getPosition()); 
+//				console.info(marker); 
+				//	map.setZoom(3);
+
+
+				address_lookup(marker);
+				map.setCenter(marker.getPosition());
+			});
+
 			markers.push(marker);
 
 
@@ -407,30 +445,76 @@ function initialize() {
 	});
 
 
-	var myMapsEngineLayer = new google.maps.KmlLayer({
-		suppressInfoWindows: true,
-		preserveViewport   : false,
-		//url                : 'http://mapsengine.google.com/map/kml?mid=zWvgkr23Oofo.kUtb8VgXr3w0&r=' + Math.random()
-		url                : 'http://mapsengine.google.com/map/kml?mid=z69UsdMNhnPs.kz_ceda-ZUMU&r=' + Math.random()
-	});
-	myMapsEngineLayer.setMap(map);
+	/*
 
-	google.maps.event.addListener(myMapsEngineLayer, 'click', function (kmlEvent) {
-		var text = kmlEvent.featureData.description;
+	 var myMapsEngineLayer = new google.maps.KmlLayer({
+	 suppressInfoWindows: true,
+	 preserveViewport   : false,
+	 //url                : 'http://mapsengine.google.com/map/kml?mid=zWvgkr23Oofo.kUtb8VgXr3w0&r=' + Math.random()
+	 url                : 'http://mapsengine.google.com/map/kml?mid=z69UsdMNhnPs.kz_ceda-ZUMU&r=' + Math.random()
+	 });
+	 myMapsEngineLayer.setMap(map);
 
-		var test = text.match(/WARD_ID\s(.*)/);
-		test = test[1];
-		test = test.replace(" ", "");
+	 google.maps.event.addListener(myMapsEngineLayer, 'click', function (kmlEvent) {
+	 var text = kmlEvent.featureData.description;
 
-		if (test) {
-			text = test;
-		}
-		//	console.info(text); 
+	 var test = text.match(/WARD_ID\s(.*)/);
+	 test = test[1];
+	 test = test.replace(" ", "");
 
-		$.bbq.pushState({"ward": text});
-		getWard();
+	 if (test) {
+	 text = test;
+	 }
+	 //	console.info(text); 
 
-	});
+	 $.bbq.pushState({"ward": text});
+	 getWard();
+
+	 });
+
+	 */
 
 }
+function address_lookup(data) {
+	var pos = data.getPosition();
+	// console.log(data);
+	// console.log(pos);
+	// console.log(pos.k);
 
+
+
+
+	//var url = 'http://www.jquery4u.com/scripts/jquery4u-sites.json?callback=?';
+	var url = 'http://maps.elections.org.za/iecdirectory/services/delimitation/v1/vssummary?callback=jsonCallback&vdnumber=&location=' + pos.A + '%2C' + pos.k;
+
+	//console.log(url);
+
+	$("#map-marker-details").animate({"opacity": 1, "right": "20px"}, 300, function () {});
+	$.ajax({
+		type         : 'GET',
+		url          : url,
+		async        : false,
+		jsonpCallback: 'jsonCallback',
+		contentType  : "application/json",
+		dataType     : 'jsonp',
+		success      : function (json) {
+			var result = json.result;
+
+
+			$("#map-marker-details .content").jqotesub($("#template-map-marker-details"), result);
+			$("#map-marker-details .loading").fadeOut(300);
+			
+
+			//console.dir(result);
+		},
+		error        : function (e) {
+			console.log(e.message);
+		}
+	});
+
+
+
+
+
+
+}

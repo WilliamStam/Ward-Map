@@ -123,13 +123,14 @@
 
 <script type="text/x-jqote-template" id="template-admin-candidate">
 	<![CDATA[
-	<form class="form-horizontal" style="margin:0;" method="post" enctype="multipart/form-data" id="form-admin-candidate" >
+	<form class="form-horizontal" style="margin:0;" method="post" enctype="multipart/form-data" id="form-admin-candidate">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 			<h3>Candidate - <% if (this.ID) { %>Edit<% } else { %>Add<% } %></h3>
 		</div>
 		<div class="modal-body">
-			<input type="hidden" id="candidate_ID" name="candidate_ID" value="<%= this.ID %>" />
+			<input type="hidden" id="candidate_ID" name="candidate_ID" value="<%= this.ID %>"/>
+
 			<div class="control-group">
 				<label class="control-label" for="ward_ID">Ward ID</label>
 
@@ -137,7 +138,7 @@
 					<input type="text" id="ward_ID" name="ward_ID" class="span2" placeholder="Ward ID" value="<%= this.ward_ID %>">
 				</div>
 			</div>
-			
+
 			<div class="control-group">
 				<label class="control-label" for="candidate_name">Name</label>
 
@@ -159,12 +160,12 @@
 					<div id="container">
 						<a id="pickfiles" href="javascript:;" class="btn btn-success"> <i class="icon icon-plus"></i>
 							<span> &nbsp; Select Photo &nbsp; </span></a>
-						
+
 					</div>
 
 					<div id="filelist">Your browser doesn't have Flash, Silverlight or HTML5 support.</div>
 
-					
+
 				</div>
 			</div>
 
@@ -188,27 +189,76 @@
 
 	<article style="position: absolute; top: 100px; left:50px; right:50px; bottom:0px;">
 		<ul class="nav nav-tabs" id="myTab" style="margin-bottom:0;">
-			<li class="pull-right" style="margin-right:10px;"><a href="#local-elec-tab-2" data-toggle="tab">Seat Allocation</a></li>
+			<li class="pull-right" style="margin-right:10px;">
+				<a href="#local-elec-tab-2" data-toggle="tab">Seat Allocation</a></li>
 			<li class="pull-right"><a href="#local-elec-tab-3" data-toggle="tab">Voter Turnout</a></li>
 			<li class="active pull-right"><a href="#local-elec-tab-1" data-toggle="tab">Ward Results</a></li>
-			
+
 		</ul>
 
 		<div class="tab-content" style="margin-top:3px;">
 			<div class="tab-pane active" id="local-elec-tab-1">
-				<embed class="pdf-viewer"  src="http://www.elections.org.za/content/LGEPublicReports/197/Detailed%20Results/NP/<%= this.municipality %>/<%= this.ward_id %>.pdf" type="application/pdf" style="width: 100%; height: 600px;"  ></embed>
+				<embed class="pdf-viewer" src="http://www.elections.org.za/content/LGEPublicReports/197/Detailed%20Results/NP/<%= this.municipality %>/<%= this.ward_id %>.pdf" type="application/pdf" style="width: 100%; height: 600px;"></embed>
 
 			</div>
 			<div class="tab-pane" id="local-elec-tab-2">
-				<embed class="pdf-viewer"  src="http://www.elections.org.za/content/LGEPublicReports/197/Seat%20Calculation%20Detail/NP/<%= this.municipality %>.pdf" type="application/pdf" style="width: 100%; height: 600px;"  ></embed>
+				<embed class="pdf-viewer" src="http://www.elections.org.za/content/LGEPublicReports/197/Seat%20Calculation%20Detail/NP/<%= this.municipality %>.pdf" type="application/pdf" style="width: 100%; height: 600px;"></embed>
 			</div>
-			
+
 			<div class="tab-pane" id="local-elec-tab-3">
-				<embed class="pdf-viewer"  src="http://www.elections.org.za/content/LGEPublicReports/197/Voter%20Turnout/NP/<%= this.municipality %>/<%= this.ward_id %>.pdf" type="application/pdf" style="width: 100%; height: 600px;"  ></embed>
+				<embed class="pdf-viewer" src="http://www.elections.org.za/content/LGEPublicReports/197/Voter%20Turnout/NP/<%= this.municipality %>/<%= this.ward_id %>.pdf" type="application/pdf" style="width: 100%; height: 600px;"></embed>
 			</div>
 		</div>
 
 
 	</article>
+	]]>
+</script>
+
+<script type="text/x-jqote-template" id="template-map-marker-details">
+	<![CDATA[
+	<h2>Voting Station</h2>
+	<table class="table">
+		<tr>
+			<td colspan="2">
+				
+				<strong><%= this.VS_Name %></strong>
+			</td>
+		</tr>
+		<tr>
+			<td>Street:</td>
+			<td><%= this.Street %></td>
+		</tr>
+		<tr>
+			<td>Suburb:</td>
+			<td><%= this.Suburb %></td>
+		</tr>
+		<tr>
+			<td>Town:</td>
+			<td><%= this.Town %></td>
+		</tr>
+		<tr>
+			<td>Province:</td>
+			<td><%= this.Province %></td>
+		</tr>
+		<tr>
+			<td>Voting District:</td>
+			<td><%= this.VDNumber %></td>
+		</tr>
+		<tr>
+			<td>LatLong:</td>
+			<td><%= this.Lat %>, <%= this.Lon %></td>
+		</tr>
+	</table>
+
+	
+
+
+
+
+
+	<button class="btn btn-primary btn-open-ward" type="button" style="width:100%; padding:10px" data-ward="<%= this.Ward %>">Open ward details</button>
+
+
 	]]>
 </script>
