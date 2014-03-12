@@ -8,7 +8,7 @@ function getWard() {
 
 
 	if (ward) {
-		$("#page-area").fadeIn(500);
+		$("#page-area").fadeIn(300);
 		$("#page-area-loading").show();
 		$("#page-area-content").hide();
 		$.getData("/data/ward/" + ward, function (data_ward) {
