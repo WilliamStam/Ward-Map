@@ -189,6 +189,7 @@
 	<article style="position: absolute; top: 100px; left:50px; right:50px; bottom:0px;">
 		<ul class="nav nav-tabs" id="myTab" style="margin-bottom:0;">
 			<li class="pull-right" style="margin-right:10px;"><a href="#local-elec-tab-2" data-toggle="tab">Seat Allocation</a></li>
+			<li class="pull-right"><a href="#local-elec-tab-3" data-toggle="tab">Voter Turnout</a></li>
 			<li class="active pull-right"><a href="#local-elec-tab-1" data-toggle="tab">Ward Results</a></li>
 			
 		</ul>
@@ -200,6 +201,10 @@
 			</div>
 			<div class="tab-pane" id="local-elec-tab-2">
 				<embed class="pdf-viewer"  src="http://www.elections.org.za/content/LGEPublicReports/197/Seat%20Calculation%20Detail/NP/<%= this.municipality %>.pdf" type="application/pdf" style="width: 100%; height: 600px;"  ></embed>
+			</div>
+			
+			<div class="tab-pane" id="local-elec-tab-3">
+				<embed class="pdf-viewer"  src="http://www.elections.org.za/content/LGEPublicReports/197/Voter%20Turnout/NP/<%= this.municipality %>/<%= this.ward_id %>.pdf" type="application/pdf" style="width: 100%; height: 600px;"  ></embed>
 			</div>
 		</div>
 
