@@ -445,7 +445,7 @@ function initialize() {
 	});
 
 
-	/*
+
 
 	 var myMapsEngineLayer = new google.maps.KmlLayer({
 	 suppressInfoWindows: true,
@@ -472,7 +472,6 @@ function initialize() {
 
 	 });
 
-	 */
 
 }
 function address_lookup(data) {
